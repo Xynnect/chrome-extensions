@@ -9,6 +9,11 @@
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab"
+    "tabs",
+  "bookmarks",
+  "http://www.blogger.com/",
+  "https://.*.com",
+  "unlimitedStorage",
+  "activeTab"
    ]
 }
