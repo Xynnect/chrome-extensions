@@ -1,28 +1,27 @@
-$(document).ready(function() {
-  var popup = localStorage.popup || 'igoogle';
+document.addEventListener('DOMContentLoaded', function() {
+  var checkPageButton = document.getElementById('checkPage');
+  checkPageButton.addEventListener('click', function() {
+ 
+    chrome.tabs.getSelected(null, function(tab) {
+      d = document;
+ 
+      var f = d.createElement('form');
+      f.action = 'http://gtmetrix.com/analyze.html?bm';
+      f.method = 'post';
+      var i = d.createElement('input');
+      i.type = 'hidden';
+      i.name = 'url';
+      i.value = tab.url;
+      f.appendChild(i);
+      d.body.appendChild(f);
+      f.submit();
+    });
+  }, false);
+  var checkPageButton2 = document.getElementById('checkPage2');
+  checkPageButton2.addEventListener('click', function() {
 
-  var frame = document.createElement('iframe');
-
-  if (popup == 'gmail') {
-    // open gmail gadget
-    $('body').height(500).width(500);
-    frame.setAttribute('src', 'http://www.rememberthemilk.com/services/modules/gmail/');
-  }
-  else if (popup == 'iphone') {
-    // open iphone web app
-    $('body').height(480).width(320);
-    frame.setAttribute('src', 'http://i.rememberthemilk.com/');
-  }
-  else if (popup == 'mobile') {
-    // open mobile web app
-    $('body').height(500).width(500);
-    frame.setAttribute('src', 'http://m.rememberthemilk.com/');
-  }
-  else {
-    // igoogle and default
-    $('body').height(600).width(600);
-    frame.setAttribute('src', 'http://www.rememberthemilk.com/services/modules/googleig/');
-  }
-
-  document.body.appendChild(frame);
-});
+    var newURL = "http://www.google.nl";
+    chrome.tabs.create({ url: newURL });
+    
+  }, false);
+}, false);
